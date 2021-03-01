@@ -1,0 +1,84 @@
+body {
+  font-family: system-ui;
+  font-size: 0.9em;
+}
+
+.icon {
+  vertical-align: middle;
+  height: 17px;
+  padding-bottom: 1.79px;
+  margin-left: 2px;
+}
+
+.card-row {
+  display: flex;
+  justify-content:space-between
+  width: 100%;
+}
+
+.card {
+  height: 420px;
+  width: 300px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.resource {
+  background-image: url("resource.jpeg");
+}
+
+.townsperson {
+  background-image: url("townsperson.jpeg");
+}
+
+.research {
+  background-image: url("research.jpeg");
+}
+
+.market_event {
+  background-image: url("market_event.jpeg");
+}
+
+.worker {
+  background-image: url("worker.jpeg");
+}
+
+.trade_license {
+  background-image: url("trade_license.jpeg");
+}
+
+.card-header {
+    font-weight: bold;
+    position: relative;
+    height: 5%;
+    top: 5.7%;
+    width: 80%;
+    text-align: center;
+    margin-left: 11%;
+    line-height: 100%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: space-between; /* align horizontal */
+    align-items: center;
+}
+
+.card-body {
+    position: relative;
+    height: 25%;
+    top: 59.1%;
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+    line-height: 100%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
