@@ -6,14 +6,50 @@ body {
 .icon {
   vertical-align: middle;
   height: 17px;
-  padding-bottom: 1.79px;
+  padding-bottom: 3px;
   margin-left: 2px;
+}
+
+.icon.size_0 {
+  height: 50px;
+}
+
+.icon.size_1 {
+  height: 35px;
+}
+
+.icon.size_2 {
+  height: 20px;
+}
+
+.icon.size_3 {
+  height: 15px;
+}
+
+.span.size_0 {
+  font-size: 2em;
+}
+
+.span.size_1 {
+  font-size: 1.6em;
+}
+
+.span.size_2 {
+  font-size: 0.9em;
+}
+
+.span.size_3 {
+  font-size: 0.7em;
 }
 
 .card-row {
   display: flex;
   justify-content:space-between
   width: 100%;
+}
+
+.cost {
+  padding-top: 1%;
 }
 
 .card {

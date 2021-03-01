@@ -38,7 +38,8 @@ def evaluate(m, x, c, tag, is_list):
     if isinstance(val, str):
         return val
 
-    modifier = max(min(np.random.normal(1, c.stddev), 1.5), 0.5) 
+    stddev_to_use = c.stddev / np.power(val, 0.1)
+    modifier = max(min(np.random.normal(1, stddev_to_use), 1.3), 0.7) 
     return str(round(modifier * val))
 
 def replace(text, x, c, tag):
@@ -77,14 +78,31 @@ def cards(row, x, c):
         row['type']
     )
  
-def insert_icons(text):
-    icon_names = [ 'gold', 'wood', 'stone', 'steel', 'gems' ]
+
+def style(text, is_body):
+    icon_names = [ 'gold', 'wood', 'stone', 'steel', 'gems', ('->', 1) ]
     newline = '\n'
+    
+    text_count = len(text) + text.count(newline) * 14
+    text_sizings = [ -1, 0, 28, 28 * 2, 28 * 3, 28 * 4 ]
+    text_size_class = 0
+    for i, s in enumerate(text_sizings):
+        if text_count >= s:
+            text_size_class = i
+
     text = text.replace(newline, "<br />")
     for i in icon_names:
-        text = text.replace(' '+i, i).replace(i, f'</a><img class="icon" src="{i}.png"/><a>')
+        if isinstance(i, tuple):
+            i, size_class_mod = i
+        else:
+            size_class_mod = 0
+
+        s = text_size_class - size_class_mod
+        s_str = f" size_{s}" if is_body else ""
+        text = text.replace(' '+i, i).replace(i, f'</a><img class="icon{s_str}" src="{i}.png"/><a>')
     
-    return f'<span><a>{text}</a></span>' 
+    s_str = f' class="size_{text_size_class}"' if is_body else ''
+    return f'<span{s_str}><a>{text}</a></span>' 
 
 
 def to_html(card):
@@ -92,10 +110,10 @@ def to_html(card):
   <div class="card {card.type}">
     <div class="card-header">
       <span class="name">{card.name}</span>
-      <span class="cost">{insert_icons(card.cost)}</span>
+      <span class="cost">{style(card.cost, is_body=False)}</span>
     </div>
     <div class="card-body">
-       {insert_icons(card.text)}
+       {style(card.text, is_body=True)}
     </div>
   </div>
 """
