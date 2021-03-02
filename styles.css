@@ -15,7 +15,7 @@ body {
 }
 
 .icon.size_1 {
-  height: 35px;
+  height: 40px;
 }
 
 .icon.size_2 {
@@ -26,19 +26,19 @@ body {
   height: 15px;
 }
 
-.span.size_0 {
+span.size_0 {
   font-size: 2em;
 }
 
-.span.size_1 {
-  font-size: 1.6em;
+span.size_1 {
+  font-size: 1.7em;
 }
 
-.span.size_2 {
+span.size_2 {
   font-size: 0.9em;
 }
 
-.span.size_3 {
+span.size_3 {
   font-size: 0.7em;
 }
 
@@ -57,6 +57,18 @@ body {
   width: 300px;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.card-art-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.card-art {
+  width: 83%;
+  margin-left: 8.5%;
+  margin-top: 10%;
+  height: 43%;
 }
 
 .resource {
@@ -88,11 +100,11 @@ body {
     position: relative;
     height: 5%;
     top: 5.7%;
-    width: 80%;
+    width: 78.5%;
     text-align: center;
     margin-left: 11%;
     line-height: 100%;
-    margin-right: 10%;
+    margin-right: 10.5%;
     display: flex;
     justify-content: space-between; /* align horizontal */
     align-items: center;
@@ -101,10 +113,10 @@ body {
 .card-body {
     position: relative;
     height: 25%;
-    top: 59.1%;
     width: 80%;
     text-align: center;
     margin-left: 10%;
+    margin-top: 13%;
     line-height: 100%;
     margin-right: 10%;
     display: flex;

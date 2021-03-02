@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 from math import floor, ceil
+import os.path
 
 html_prefix = """
 <!doctype html>
@@ -104,6 +105,13 @@ def style(text, is_body):
     s_str = f' class="size_{text_size_class}"' if is_body else ''
     return f'<span{s_str}><a>{text}</a></span>' 
 
+def art(card):
+    if os.path.isfile(f'{card.name.replace(" ", "_")}.png'):
+        return f'{card.name.replace(" ", "_")}.png'
+    elif os.path.isfile(f'{card.type.replace(" ", "_")}.png'):
+        return f'{card.type.replace(" ", "_")}.png'
+    else:
+        return "no_art.png"
 
 def to_html(card):
     return f"""
@@ -111,6 +119,9 @@ def to_html(card):
     <div class="card-header">
       <span class="name">{card.name}</span>
       <span class="cost">{style(card.cost, is_body=False)}</span>
+    </div>
+    <div class="card-art">
+      <img class="card-art-inner" src="{art(card)}"/>
     </div>
     <div class="card-body">
        {style(card.text, is_body=True)}
