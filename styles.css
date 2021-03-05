@@ -72,27 +72,27 @@ span.size_3 {
 }
 
 .resource {
-  background-image: url("resource.jpeg");
+  background-image: url("resource.png");
 }
 
-.townsperson {
-  background-image: url("townsperson.jpeg");
+.townspeople {
+  background-image: url("townspeople.png");
 }
 
 .research {
-  background-image: url("research.jpeg");
+  background-image: url("research.png");
 }
 
 .market_event {
-  background-image: url("market_event.jpeg");
+  background-image: url("market_event.png");
 }
 
 .worker {
-  background-image: url("worker.jpeg");
+  background-image: url("worker.png");
 }
 
 .trade_license {
-  background-image: url("trade_license.jpeg");
+  background-image: url("trade_license.png");
 }
 
 .card-header {
