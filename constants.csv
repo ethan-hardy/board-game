@@ -1,8 +1,8 @@
 name,value
 wood,5
 stone,6
-steel,11
-gems,15
+steel,14
+gems,19
 stddev,0.15
 pcurve,0.2
 tcurve,-0.2
@@ -14,3 +14,4 @@ wood_sz_m,1
 stone_sz_m,1
 steel_sz_m,1.15
 gems_sz_m,1.2
+influence,20

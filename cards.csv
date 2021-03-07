@@ -1,7 +1,6 @@
 type,name,cost,text,num_versions,num_copies,tag
 trade_license,Trade License,,"[wood, stone, steel, gems]",4,4,resources
 trade_license,Trade License,,"[wood, stone, steel, gems]
-
 When discarding, you may sell {7 * c.stone / v} {tag} for {v * 1.5} gold each.",4,2,"wood, stone, steel, gems"
 worker,Lumberjack,"{30*1.2*np.power(x, 0.8)*v/c.stone} gold  {x} {tag}","{x * v / 2} gold -> {np.power(x, 1.3)} {tag}",3,3,wood
 worker,Miner,"{30*1.2*np.power(x, 0.8)*v/c.stone} gold  {x} {tag}","{x * v / 2} gold -> {np.power(x, 1.3)} {tag}",3,3,stone
@@ -18,11 +17,9 @@ worker,Trader,"{20*0.8*np.power(x, 1.2)} gold  {6 * np.power(x, 1.2)} wood","Dis
 research,Career Change,,"Discard a worker you have in play -> recruit the top [Lumberjack, Miner, Smelter, Lapidary] for free",4,1,workers
 research,HFT,,Take the first player token,1,4,speed
 trade_license,Trade License,,"[wood, stone, steel, gems, wood, stone, steel, gems]
-
 Before auctions, you must reveal this card and resolve its effect.
 Townspeople orders in {tag} for this auction are [halved, halved, halved, halved, doubled, doubled, doubled, doubled] in size [(round down), (round down), (round down), (round down),,,,]",8,1,"wood, stone, steel, gems"
 research,Found a Buyer,,"Pick one:
-
 {x * 12 *  c.wood_sz_m * c.stone / c.wood} wood -> {1.5 * c.wood * prov_m * c.wood_prc_m} gold each
 {x * 12 * c.stone_sz_m * c.stone / c.stone} stone -> {1.5 * c.stone * prov_m * c.stone_prc_m} gold each
 {x * 12 * c.steel_sz_m * c.stone / c.steel} steel -> {1.5 * c.steel * prov_m * c.steel_prc_m} gold each
@@ -34,14 +31,28 @@ market_event,Big Buyer,,"Add this card to the end of the next auction; all playe
 
 I need {x * sz_m * 32 * c.stone / v} {tag}, I won't pay more than {3.1 * v * prc_m} gold each.",2,3,"wood, stone, steel, gems"
 research,New Faces,,Put the top card of each standard worker decks on the bottom of its deck. You may immediately recruit one of the new available workers (you still need to pay costs).,1,5,workers
-research,Foresight,,"Look at the top {x+1} cards of the Market Events deck, then shuffle them into it.",4,2,research
-market_event,Supply Cache,,Each player may buy up to {1.6 * x} {tag} for {0.2 * v} each.,3,2,"wood, stone, steel, gems"
+research,Foresight,,"Look at the top {x+1} cards of the Market Events deck, then shuffle them into it.",4,5,research
+market_event,Supply Cache,,Each player may buy up to {1.6 * x} {tag} for {0.2 * v} gold each.,3,2,"wood, stone, steel, gems"
 trade_license,Merchant License,,"wood stone steel gems
-
 You must reveal this after trading. You may not take any actions this work phase.
 For each auction, you may, before it occurs, send one order that will be executed immediately (the townsperson must still be willing to trade at your price).
 Every time you provide the full size to a townsperson, gain {c.stone * 1.8} gold.",1,3,auctions
 market_event,Volatile Conditions,,Draw and resolve two more Market Events,1,4,market_events
 market_event,Converter,,"Each player may use this as part of their use workers action.
-
 2 [wood, stone] -> {tag}",2,1,"steel, gems"
+market_event,Shifting Markets,,"Halve the size of all townspeople {tag} buy orders and {list(set([""wood"", ""stone"", ""steel"", ""gems""]) - set([tag]))[x-1]} sell orders.
+Double the size of all townspeople {list(set([""wood"", ""stone"", ""steel"", ""gems""]) - set([tag]))[x-1]} buy orders and {tag} sell orders.
+This card remains in effect until a new Shifting Markets card is resolved.",3,2,"wood, stone, steel, gems"
+research,Exclusive Auctions,,Look at the top {x+4} cards of the Townsperson deck. You may put up to {x} of them on the bottom of the deck.,3,4,townspeople
+research,Pivot,,"Whenever a Market Event would be resolved, you may pay 10 gold and play this card to instead discard the Market Event and immediately resolving the next Market Event.",1,5,
+research,Equalize,,"Every player counts the number of cards they have in hand. If you have strictly less cards than everyone else, each other player sells you a random card from their hand for 5 gold.",1,3,
+research,Equalize,,"Every player counts the number of cards they have in hand. If you have strictly more cards than everyone else, each player buys a random card from you for 10 gold each.",1,3,
+research,Politician,,"{c.stone * 2} gold -> put a favour counter on this card.
+Remove X favour counters from this card -> X times, gain one of: 2 wood, 2 stone, 1 steel, 1 gems",1,4,
+influence,"<Supply the Troops, Dazzling Gift>","{np.power(x, 0.8) * c.influence * 0.6} gold {np.power(x, 0.8) * c.influence * 0.4 / c.values[tag]} {tag}",{x} influence,3,2,"steel, gems"
+influence,Bribe,"{np.power(x,  0.9)} gold",{x} influence,4,4,influence
+influence,Build a Home,"{0.3 * np.power(x, 0.8) * c.influence / c.stone} gold {0.85 * np.power(x, 0.8) * c.influence / c.stone} stone {0.85 * np.power(x, 0.8) * c.influence / c.wood} wood",{2*x} influence,3,4,influence
+resource,Wood,,wood,1,2,resources
+resource,Stone,,stone,1,2,resources
+resource,Steel,,steel,1,2,resources
+resource,Gems,,gems,1,2,resources

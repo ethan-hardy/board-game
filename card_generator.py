@@ -88,11 +88,11 @@ def cards(row, x, c, tag, tag_ind):
  
 
 def style(text, is_body):
-    icon_names = [ 'gold', 'wood', 'stone', 'steel', 'gems', ('->', 1) ]
+    icon_names = [ 'gold', 'wood', 'stone', 'steel', 'gems', ('->', 1), 'influence' ]
     newline = '\n'
     
     text_count = len(text) + text.count(newline) * 14
-    text_sizings = [ -1, 0, 28, 28 * 2, 28 * 3, 28 * 4 ]
+    text_sizings = [ -1, 0, 28, 28 * 2, 28 * 3, 28 * 5, 28 * 7, 28 * 10, 28 * 15, 28 * 24 ]
     text_size_class = 0
     for i, s in enumerate(text_sizings):
         if text_count >= s:
@@ -107,7 +107,7 @@ def style(text, is_body):
 
         s = text_size_class - size_class_mod
         s_str = f" size_{s}" if is_body else ""
-        text = text.replace(' '+i, i).replace(i, f'</a><img class="icon{s_str}" src="{i}.png"/><a>')
+        text = text.replace(' '+i, i).replace(i, f'</a><img class="icon{s_str}" src="{i}_icon.png"/><a>')
     
     s_str = f' class="size_{text_size_class}"' if is_body else ''
     return f'<span{s_str}><a>{text}</a></span>' 
@@ -123,6 +123,17 @@ def art(card):
         return "no_art.png"
 
 def to_html(card):
+    if card.type == "resource":
+        return f"""
+  <div class="card" style="background-image: url('{card.name}.png');">
+    <div class="resource-body">
+       {style(card.text, is_body=True)}
+    </div>
+    <div class="resource-line">
+      <span class="resource-name">{card.name}</span>
+    </div>
+  </div>
+"""
     return f"""
   <div class="card {card.type}">
     <div class="card-header">

@@ -3,6 +3,21 @@ body {
   font-size: 0.9em;
 }
 
+.resource-body {
+  position: relative;
+  top: 34%;
+  text-align: center;
+  margin-right: 7px;
+}
+
+.resource-line {
+  position: relative;
+  text-align: center;
+  margin-right: 2.2%;
+  top: 56.5%;
+  font-weight: bold;
+}
+
 .icon {
   vertical-align: middle;
   height: 17px;
@@ -11,11 +26,11 @@ body {
 }
 
 .icon.size_0 {
-  height: 50px;
+  height: 130px;
 }
 
 .icon.size_1 {
-  height: 40px;
+  height: 115px;
 }
 
 .icon.size_2 {
@@ -23,7 +38,23 @@ body {
 }
 
 .icon.size_3 {
-  height: 15px;
+  height: 20px;
+}
+
+.icon.size_4 {
+  height: 18px;
+}
+
+.icon.size_5 {
+  height: 14px;
+}
+
+.icon.size_6 {
+  height: 12px;
+}
+
+.icon.size_7 {
+  height: 12px;
 }
 
 span.size_0 {
@@ -35,11 +66,27 @@ span.size_1 {
 }
 
 span.size_2 {
-  font-size: 0.9em;
+  font-size: 1.3em;
 }
 
 span.size_3 {
-  font-size: 0.7em;
+  font-size: 1.2em;
+}
+
+span.size_4 {
+  font-size: 1em;
+}
+
+span.size_5 {
+  font-size: 0.9em;
+}
+
+span.size_6 {
+  font-size: 10px;
+}
+
+span.size_7 {
+  font-size: 9px;
 }
 
 .card-row {
@@ -85,6 +132,10 @@ span.size_3 {
 
 .market_event {
   background-image: url("market_event.png");
+}
+
+.influence {
+  background-image: url("influence.png");
 }
 
 .worker {
