@@ -107,7 +107,8 @@ def style(text, is_body):
 
         s = text_size_class - size_class_mod
         s_str = f" size_{s}" if is_body else ""
-        text = text.replace(' '+i, i).replace(i, f'</a><img class="icon{s_str}" src="{i}_icon.png"/><a>')
+        text = re.sub(f'(?<=[0-9]) (?={i})', '', text)
+        text = text.replace(i, f'</a><img class="icon{s_str}" src="{i}_icon.png"/><a>')
     
     s_str = f' class="size_{text_size_class}"' if is_body else ''
     return f'<span{s_str}><a>{text}</a></span>' 
@@ -166,6 +167,9 @@ def process_sheet(filename, generate, c):
                 for _ in range(int(row["num_copies"])):
                     card = generate(row, v+1, c, tag, tag_ind)
                     lines.append(to_html(card))
+                    break
+                break
+            break
 
     return lines
 

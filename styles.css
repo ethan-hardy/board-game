@@ -1,6 +1,6 @@
 body {
   font-family: system-ui;
-  font-size: 0.9em;
+  font-size: 1.5vw;
 }
 
 .resource-body {
@@ -13,80 +13,53 @@ body {
 .resource-line {
   position: relative;
   text-align: center;
-  margin-right: 2.2%;
-  top: 56.5%;
+  margin-right: 0.7%;
+  top: 61.6%;
   font-weight: bold;
 }
 
 .icon {
   vertical-align: middle;
-  height: 17px;
-  padding-bottom: 3px;
+  padding-bottom: 0.15em;
   margin-left: 2px;
+  height: 1.1em;
 }
 
-.icon.size_0 {
-  height: 130px;
-}
-
-.icon.size_1 {
-  height: 115px;
-}
-
-.icon.size_2 {
-  height: 20px;
-}
-
-.icon.size_3 {
-  height: 20px;
-}
-
-.icon.size_4 {
-  height: 18px;
-}
-
-.icon.size_5 {
-  height: 14px;
-}
-
-.icon.size_6 {
-  height: 12px;
-}
-
-.icon.size_7 {
-  height: 12px;
+.resource-body .icon {
+  height: 10.5vw;
+  opacity: 85%;
 }
 
 span.size_0 {
-  font-size: 2em;
+  font-size: 3vw;
 }
 
 span.size_1 {
-  font-size: 1.7em;
+  font-size: 2.3vw;
 }
 
 span.size_2 {
-  font-size: 1.3em;
+  font-size: 2vw;
 }
 
 span.size_3 {
-  font-size: 1.2em;
+  font-size: 1.9vw;
 }
 
 span.size_4 {
-  font-size: 1em;
+  font-size: 1.7em;
 }
 
 span.size_5 {
-  font-size: 0.9em;
+  font-size: 1.4vw;
 }
 
 span.size_6 {
-  font-size: 10px;
+  font-size: 1.2vw;
 }
 
 span.size_7 {
-  font-size: 9px;
+  font-size: 1vw;
 }
 
 .card-row {
@@ -97,11 +70,16 @@ span.size_7 {
 
 .cost {
   padding-top: 1%;
+  height: 100%;
+}
+
+.cost .icon {
+  padding-bottom: 3%;
 }
 
 .card {
-  height: 420px;
-  width: 300px;
+  aspect-ratio: 0.71;
+  width: 33%;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -112,10 +90,10 @@ span.size_7 {
 }
 
 .card-art {
-  width: 83%;
-  margin-left: 8.5%;
-  margin-top: 10%;
-  height: 43%;
+  width: 82.5%;
+  margin-left: 8.8%;
+  margin-top: 9.8%;
+  height: 43.5%;
 }
 
 .resource {
@@ -167,7 +145,7 @@ span.size_7 {
     width: 80%;
     text-align: center;
     margin-left: 10%;
-    margin-top: 13%;
+    margin-top: 11%;
     line-height: 100%;
     margin-right: 10%;
     display: flex;
