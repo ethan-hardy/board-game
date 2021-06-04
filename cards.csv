@@ -1,60 +1,54 @@
-type,name,cost,text,num_versions,num_copies,tag
-trade_license,Trade License,,"[wood, stone, steel, gems]",4,4,resources
-trade_license,Trade License,,"[wood, stone, steel, gems]
-When discarding, you may sell {7 * c.stone / v} {tag} for {v * 1.5} gold each.",4,2,"wood, stone, steel, gems"
-worker,Lumberjack,"{30*1.2*np.power(x, 0.8)*v/c.stone} gold  {x} {tag}","{x * v / 2} gold -> {np.power(x, 1.3)} {tag}",3,3,wood
-worker,Miner,"{30*1.2*np.power(x, 0.8)*v/c.stone} gold  {x} {tag}","{x * v / 2} gold -> {np.power(x, 1.3)} {tag}",3,3,stone
-worker,Smelter,"{40*1.2*np.power(x, 0.8)*v/c.stone} gold {x / 2} wood {x} {tag}","{x * 0.4 * v / c.stone} stone {x * v * 0.2} gold -> {np.power(x, 1.3)} {tag}",3,3,steel
-worker,Lapidary,"{40*1.2*np.power(x, 0.8)*v/c.stone} gold {x / 2} stone {x} {tag}","{x * 0.2 * v / c.wood} wood {x * v * 0.4} gold -> {np.power(x, 1.3)} {tag}",3,3,gems
-worker,Scholar,"{15*np.power(x, 1.6)} gold  {x} steel","{np.power(x, 1.5)} wood {4 * np.power(x, 1.5)} gold -> draw {x} research card[, s, s]",2,5,research
-worker,Forager,"{30*np.power(x, 1.8)} gold  {2*np.power(x, 1.5)} wood  {2*np.power(x, 1.5)} stone","{np.power(x, 0.8) * 0.4 * c.stone} -> draw {x} card[, s, s] from the resource deck",3,3,resources
-research,Big Order,,Sell {x * sz_m * 10 * c.stone / v} {tag} for {2.5 * v * prc_m} gold each,3,2,"wood, stone, steel, gems"
-worker,Auctioneer,"{30*2*np.power(x, 0.5)} gold  wood stone steel gems","{x * 2.2 * c.stone / c.wood} wood -> {0.5 * c.wood * take_m} gold each
-{x * 2.2 * c.stone/ c.stone} stone -> {0.5 * c.stone * take_m} gold each
-{x * 2.2 * c.stone / c.steel} steel -> {0.5 * c.steel * take_m} gold each
-{x * 2.2 * c.stone / c.gems} gems -> {0.5 * c.gems * take_m} gold each",1,5,resources
-worker,Trader,"{20*0.8*np.power(x, 1.2)} gold  {6 * np.power(x, 1.2)} wood","Discard {x} resource card[, s, s] -> draw {x} resource card[, s, s]",3,3,resources
-research,Career Change,,"Discard a worker you have in play -> recruit the top [Lumberjack, Miner, Smelter, Lapidary] for free",4,1,workers
-research,HFT,,Take the first player token,1,4,speed
-trade_license,Trade License,,"[wood, stone, steel, gems, wood, stone, steel, gems]
-Before auctions, you must reveal this card and resolve its effect.
-Townspeople orders in {tag} for this auction are [halved, halved, halved, halved, doubled, doubled, doubled, doubled] in size [(round down), (round down), (round down), (round down),,,,]",8,1,"wood, stone, steel, gems"
-research,Found a Buyer,,"Pick one:
-{x * 12 *  c.wood_sz_m * c.stone / c.wood} wood -> {1.5 * c.wood * prov_m * c.wood_prc_m} gold each
-{x * 12 * c.stone_sz_m * c.stone / c.stone} stone -> {1.5 * c.stone * prov_m * c.stone_prc_m} gold each
-{x * 12 * c.steel_sz_m * c.stone / c.steel} steel -> {1.5 * c.steel * prov_m * c.steel_prc_m} gold each
-{x * 12 * c.gems_sz_m * c.stone / c.gems} gems -> {1.5 * c.gems * prov_m * c.gems_prc_m} gold each",3,4,resources
-townspeople,"<Builder, Mason, Blacksmith, Jeweler>",,"I need {x * sz_m * 3 * c.stone / v} {tag}, I won't pay more than {1.5 * v * prc_m} gold each.",4,6,"wood, stone, steel, gems"
-townspeople,"<Builder, Mason, Blacksmith, Jeweler>",,"I have {x * 3 * c.stone / v} {tag} for sale, I won't sell for less than {0.8 * v * take_m} gold each.  ",4,2,"wood, stone, steel, gems"
-market_event,Tax,,All players must pay {x} gold for each card in their hand right before auction this turn.,2,3,tax
-market_event,Big Buyer,,"Add this card to the end of the next auction; all players may trade with it
+supertype,type,name,image,cost,text,num_versions,num_copies,tag,,,,,,,total_to_print,pct_of_type,pct_of_supertype,total_of_type,total_of_supertype
+research,action,Efficient Routes,,,"Take the first player token. Next turn, you keep the first player token.",1,3,speed,speed,,,,,1,3,12%,2%,25,135
+research,action,Pity,,,"You can play this card immediately before the worker phase, but can only play it then.
 
-I need {x * sz_m * 32 * c.stone / v} {tag}, I won't pay more than {3.1 * v * prc_m} gold each.",2,3,"wood, stone, steel, gems"
-research,New Faces,,Put the top card of each standard worker decks on the bottom of its deck. You may immediately recruit one of the new available workers (you still need to pay costs).,1,5,workers
-research,Foresight,,"Look at the top {x+1} cards of the Market Events deck, then shuffle them into it.",4,5,research
-market_event,Supply Cache,,Each player may buy up to {1.6 * x} {tag} for {0.2 * v} gold each.,3,2,"wood, stone, steel, gems"
-trade_license,Merchant License,,"wood stone steel gems
-You must reveal this after trading. You may not take any actions this work phase.
-For each auction, you may, before it occurs, send one order that will be executed immediately (the townsperson must still be willing to trade at your price).
-Every time you provide the full size to a townsperson, gain {c.stone * 1.8} gold.",1,3,auctions
-market_event,Active Markets,,Draw and resolve two more Market Events,1,4,market_events
-market_event,Converter,,"Each player may use this as part of their use workers action.
-2 [wood, stone] -> {tag}",2,1,"steel, gems"
-market_event,Shifting Markets,,"Halve the size of all townspeople {tag} buy orders and {list(set([""wood"", ""stone"", ""steel"", ""gems""]) - set([tag]))[x-1]} sell orders.
-Double the size of all townspeople {list(set([""wood"", ""stone"", ""steel"", ""gems""]) - set([tag]))[x-1]} buy orders and {tag} sell orders.
-This card remains in effect until a new Shifting Markets card is resolved.",3,2,"wood, stone, steel, gems"
-research,Exclusive Auctions,,Look at the top {x+4} cards of the Townsperson deck. You may put up to {x} of them on the bottom of the deck.,3,4,townspeople
-research,Dispute,,"Whenever a Market Event would be resolved, you may pay 10 gold and play this card to instead discard the Market Event and immediately resolving the next Market Event.",1,5,
-research,Equalize,,"Every player counts the number of cards they have in hand. If you have strictly less cards than everyone else, each other player sells you a random card from their hand for 5 gold.",1,3,
-research,Equalize,,"Every player counts the number of cards they have in hand. If you have strictly more cards than everyone else, each player buys a random card from you for 10 gold each.",1,3,
-research,Politician,,"{c.stone * 2} gold -> put a favour counter on this card.
-Remove X favour counters from this card -> X times, gain one of: 2 wood, 2 stone, 1 steel, 1 gems",1,4,
-influence,"<Supply the Troops, Dazzling Gift>","{np.power(x, 0.8) * c.influence * 0.6} gold {np.power(x, 0.8) * c.influence * 0.4 / c.values[tag]} {tag}",{x} influence,3,2,"steel, gems"
-influence,Bribe,"{np.power(x,  0.9) * c.influence} gold",{x} influence,4,4,influence
-influence,Build a Home,"{0.3 * np.power(x, 0.8) * c.influence / c.stone} gold {0.85 * np.power(x, 0.8) * c.influence / c.stone} stone {0.85 * np.power(x, 0.8) * c.influence / c.wood} wood",{2*x} influence,3,4,influence
-resource,Wood,,wood,1,2,resources
-resource,Stone,,stone,1,2,resources
-resource,Steel,,steel,1,2,resources
-resource,Gems,,gems,1,2,resources
-market_event,Riches,,Each player gains {50 + x*20} gold,3,2,
-research,Impose Tithe,,Gain 5 gold per townsperson in auctions this turn. You may not participate in auctions this turns.,1,4,auctions
+If you have no resource cards, draw 3 resource cards.",1,5,resources,resources,,,,,1,5,20%,4%,25,135
+research,action,Greed,,,"You can play this card immediately before the worker phase, but can only play it then.
+
+If you have at least 10 resource cards, draw 2 additional resource cards.",1,3,resources,resources,,,,,1,3,12%,2%,25,135
+research,action,Exclusive Service,,,Look at the top {7-x} cards of the Townsperson deck. You may put up to {x} of them on the bottom of the deck. Then put the rest back on top in a random order.,3,2,townspeople,townspeople,,,,,1,6,24%,4%,25,135
+research,action,Recruitment,,,"Choose a resource, then reveal cards from the reseach deck until you reveal a worker that produces the chosen resource. Put the revealed worker card into your hand.",1,6,workers,workers,,,,,1,6,24%,4%,25,135
+research,action,Visionary,,,"Reveal the bottom card of the townspeople deck, then find the next two cards (searching from the bottom) that share a resource with the revealed card. Shuffle all three cards together with the top three cards of the deck, then place the shuffled pile of 6 cards on top of the deck. You may buy up to three of the revealed card's resource for {c.stone+1} gold each.",1,2,resources,resources,,,,,1,2,8%,1%,25,135
+research,artifact,Bartering,,1 gems 1 steel,Townspeople pay you 1 gold extra each for resources,1,4,resources,resources,,,,,1,4,17%,3%,24,135
+research,artifact,Networking,,2 steel 2 gems,Your maximum townspeople hand size is increased by one.,1,4,townspeople,townspeople,,,,,1,4,17%,3%,24,135
+research,artifact,{tag} Mastery,,4 {tag},"Whenever you activate a worker to produce {tag}, gain 2 gold.",1,1,"wood, stone, steel, gems",wood, stone, steel, gems,,4,4,17%,3%,24,135
+research,artifact,R&D,,1 gems 1 stone,Pick from one extra card when picking cards from the research deck.,1,6,research,research,,,,,1,6,25%,4%,24,135
+research,artifact,Specialization,,1 stone,"When Specialization enters play, choose a resource.
+
+Whenever you play a worker, reveal cards from the research deck until you reveal a worker card. If the revealed card produces the chosen resource, you may put it into your hand.",1,6,resources,resources,,,,,1,6,25%,4%,24,135
+research,worker,Politician,,1 stone 1 steel,"{c.stone-1} gold -> put a favour counter on this card.
+Remove X favour counters from this card -> Gain X resources in any combination",1,3,resources,resources,,,,,1,3,3%,2%,86,135
+research,worker,Forager,,"[1 wood 1 stone, 2 wood 1 stone]","{(c.stone - 1) * x} gold -> draw {x} card[, s] from the resource deck",2,2,resources,resources,,,,,1,4,5%,3%,86,135
+research,worker,Lapidary,,"[3 wood, 2 stone 2 steel]",{(c.stone - 2) * x + (x - 1)} gold -> {x} {tag},2,3,gems,gems,,,,,1,6,7%,4%,86,135
+research,worker,Lumberjack,,"[3 stone, 2 gems 2 steel]",{(c.stone - 2) * x + (x - 1)} gold -> {x} {tag},2,3,wood,wood,,,,,1,6,7%,4%,86,135
+research,worker,Miner,,"[3 steel, 2 steel 2 gems]",{(c.stone - 2) * x + (x - 1)} gold -> {x} {tag},2,3,stone,stone,,,,,1,6,7%,4%,86,135
+research,worker,Scholar,,1 steel 2 wood,{c.stone - 2} gold -> draw a card from the research deck,1,5,research,research,,,,,1,5,6%,4%,86,135
+research,worker,Smelter,,"[3 gems, 2 stone 2 wood]",{(c.stone - 2) * x + (x - 1)} gold -> {x} {tag},2,3,steel,steel,,,,,1,6,7%,4%,86,135
+research,worker,Trader,,"[2 stone 1 gems, 2 stone 2 gems]","Discard up to {x+1} resource cards -> draw that many resource cards
+
+Discard up to {x} research card[, s] -> draw that many research cards",2,3,resources,resources,,,,,1,6,7%,4%,86,135
+research,worker,Assembly Line,,1 stone 1 steel,"4 gold -> 2X gold, where X is the highest number of any one resource you produced this turn",1,5,resources,resources,,,,,1,5,6%,4%,86,135
+research,worker,{tag} Expert,,4 {tag},"{c.stone * 2.2} gold -> X {tag}, where X is the number of other workers you activated to produce {tag} this turn.",1,2,"wood, stone, steel, gems",wood, stone, steel, gems,,4,8,9%,6%,86,135
+research,worker,{tag} Adept,,"9 gold 2 <stone, steel, gems, wood>","This card costs 3 gold less for each worker you control that produces only {tag}.
+
+1 <stone, steel, gems, wood> -> 2 {tag}",1,3,"wood, stone, steel, gems",wood, stone, steel, gems,,4,12,14%,9%,86,135
+research,worker,Investment,,1 gems,"1 of any resource -> Put a gains counter on Investment
+
+Remove 6 gains counters from Investment -> Gain 50 gold",1,6,resources,resources,,,,,1,6,7%,4%,86,135
+research,worker,{tag} Academy,,"<2 stone 1 gems 1 steel, 2 steel 1 gems 1 wood, 2 gems 1 stone 1 wood, 2 wood 1 steel 1 stone>","1 {tag} -> Add a teaching counter to this card, then if there are 3 or more teaching counters on it, remove all of them and reveal cards from the reseach deck until you reveal a worker that produces only {tag}. You may play the revealed worker card for free.",1,2,"wood, stone, steel, gems",wood, stone, steel, gems,,4,8,9%,6%,86,135
+research,worker,Quick Learner,,1 wood 1 stone 1 steel 1 gems,"When Quick Learner enters play, choose another worker you control. Quick Learner enters as a copy of that worker.
+
+If you don't control another worker, why did you play this card u big dummy",1,3,workers,workers,,,,,1,3,3%,2%,86,135
+research,worker,Converter,,1 gems,"Converter comes into play with 10 conversion counters on it.
+
+X of any one resource, remove X conversion counters -> X of any one resource of your choice.",1,2,resources,resources,,,,,1,2,2%,1%,86,135
+resource,resource,Gems,,,gems,1,110,resources,resources,,,,,1,110,25%,25%,440,440
+resource,resource,Steel,,,steel,1,110,resources,resources,,,,,1,110,25%,25%,440,440
+resource,resource,Stone,,,stone,1,110,resources,resources,,,,,1,110,25%,25%,440,440
+resource,resource,Wood,,,wood,1,110,resources,resources,,,,,1,110,25%,25%,440,440
+townsperson,townsperson,"Amateur <Builder, Mason, Blacksmith, Jeweler>","<Builder, Mason, Blacksmith, Jeweler>",,"I'll buy 2 {tag} for [14,15] gold (that's [7,7.5] gold each).",2,2,"wood, stone, steel, gems",wood, stone, steel, gems,,4,16,14%,14%,112,112
+townsperson,townsperson,"<Builder, Mason, Blacksmith, Jeweler> Apprentice","<Builder, Mason, Blacksmith, Jeweler>",,"I'll buy 3 {tag} for [23,24] gold (that's [7.7,8] gold each).",2,3,"wood, stone, steel, gems",wood, stone, steel, gems,,4,24,21%,21%,112,112
+townsperson,townsperson,"<Builder, Mason, Blacksmith, Jeweler>","<Builder, Mason, Blacksmith, Jeweler>",,"I'll buy 5 {tag} for [40,42] gold (that's [8,8.4] gold each).",2,2,"wood, stone, steel, gems",wood, stone, steel, gems,,4,16,14%,14%,112,112
+townsperson,townsperson,"<Builder, Mason, Blacksmith, Jeweler> Project Overseer","<Builder, Mason, Blacksmith, Jeweler>",,"I'll buy 8 {tag} for [79,83] gold (that's [9.9, 10.4] gold each).",2,1,"wood, stone, steel, gems",wood, stone, steel, gems,,4,8,7%,7%,112,112
+townsperson,townsperson,Overstocked {tag} Merchant,Hopelessly Overstocked Merchant,,"I'll selll [14, 10] {tag} for [46, 35] gold  (that's [3.3, 3.5] gold each).",2,3,"wood, stone, steel, gems",wood, stone, steel, gems,,4,24,21%,21%,112,112
+townsperson,townsperson,{tag} Merchant,Merchant,,"I'll buy {x+1} {tag} for [2,2,3] gold more each than the townsperson bid.",3,2,"wood, stone, steel, gems",wood, stone, steel, gems,,4,24,21%,21%,112,112

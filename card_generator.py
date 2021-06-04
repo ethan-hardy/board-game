@@ -48,6 +48,7 @@ def evaluate(m, x, c, tag, is_list):
 
         stddev_to_use = c.stddev / np.power(val, 0.1)
         modifier = max(min(np.random.normal(1, stddev_to_use), 1.3), 0.7) 
+        modifier = 1
         return str(max(round(modifier * val), 1))
     except NameError:
         import pdb; pdb.set_trace()
@@ -63,6 +64,7 @@ def evaluate(m, x, c, tag, is_list):
         a = 3
 
 def replace(text, x, c, tag, tag_ind):
+    tag = tag.capitalize()
     text = "" if not isinstance(text, str) and np.isnan(text) else text
     replaced_for_code = re.sub(r'{(.*?)}', lambda m: evaluate(m, x, c, tag, is_list=False), text)
     #import pdb; pdb.set_trace()
@@ -72,23 +74,28 @@ def replace(text, x, c, tag, tag_ind):
 
 
 class Card:
-    def __init__(self, name, cost, text, type_):
+    def __init__(self, name, cost, text, supertype, type_, image):
         self.name = name
         self.cost = cost
         self.text = text
+        self.supertype = supertype
         self.type = type_
+        self.image = image if isinstance(image, str) and len(image) > 0 else type_
 
 def cards(row, x, c, tag, tag_ind):
     return Card(
         replace(row['name'], x, c, tag, tag_ind),
         replace(row['cost'], x, c, tag, tag_ind),
         replace(row['text'], x, c, tag, tag_ind),
-        row['type']
+        row['supertype'],
+        row['type'],
+        replace(row['image'], x, c, tag, tag_ind),
     )
  
 
 def style(text, is_body):
-    icon_names = [ 'gold', 'wood', 'stone', 'steel', 'gems', ('->', 1), 'influence' ]
+    icon_names = [ 'Gold', 'Wood', 'Stone', 'Steel', 'Gems', ('->', 1), 'Influence' ]
+    icon_names = [ s.lower() for s in icon_names if isinstance(s, str) ] + icon_names 
     newline = '\n'
     
     text_count = len(text) + text.count(newline) * 14
@@ -108,7 +115,7 @@ def style(text, is_body):
         s = text_size_class - size_class_mod
         s_str = f" size_{s}" if is_body else ""
         text = re.sub(f'(?<=[0-9]) (?={i})', '', text)
-        text = text.replace(i, f'</a><img class="icon{s_str}" src="{i}_icon.png"/><a>')
+        text = text.replace(i, f'</a><img class="icon{s_str}" src="{i.lower()}_icon.png"/><a>')
     
     s_str = f' class="size_{text_size_class}"' if is_body else ''
     return f'<span{s_str}><a>{text}</a></span>' 
@@ -118,13 +125,13 @@ def art(card):
         return f'{card.name}.png'
     if os.path.isfile(f'{card.name.replace(" ", "_")}.png'):
         return f'{card.name.replace(" ", "_")}.png'
-    elif os.path.isfile(f'{card.type.replace(" ", "_")}.png'):
-        return f'{card.type.replace(" ", "_")}.png'
+    elif os.path.isfile(f'{card.image.replace(" ", " ")}.png'):
+        return f'{card.image.replace(" ", " ")}.png'
     else:
         return "no_art.png"
 
 def to_html(card):
-    if card.type == "resource":
+    if card.supertype == "resource":
         return f"""
   <div class="card" style="background-image: url('{card.name}.png');">
     <div class="resource-body">
@@ -135,6 +142,9 @@ def to_html(card):
     </div>
   </div>
 """
+
+    card_type_line = f"{card.supertype.capitalize()} – {card.type.capitalize()}" \
+        if card.supertype != card.type else card.supertype.capitalize()
     return f"""
   <div class="card {card.type}">
     <div class="card-header">
@@ -143,6 +153,9 @@ def to_html(card):
     </div>
     <div class="card-art">
       <img class="card-art-inner" src="{art(card)}"/>
+    </div>
+    <div class="card-type-line">
+       {card_type_line}
     </div>
     <div class="card-body">
        {style(card.text, is_body=True)}
@@ -168,29 +181,31 @@ def process_sheet(filename, generate, c):
                     card = generate(row, v+1, c, tag, tag_ind)
                     lines.append(to_html(card))
                     break
-                break
-            break
 
     return lines
 
 
 num_columns = 3
+num_rows = 3
 def main():
     mappers = [ cards ]
     c = Constants("constants.csv")
     card_htmls = [ html_prefix ]
 
-    col_num = 0
+    card_num = 0
     #import pdb; pdb.set_trace()
     for m in mappers:
         new_card_htmls = process_sheet(m.__name__ + ".csv", m, c)
         for c in new_card_htmls:
             card_htmls.append(c)
-            col_num += 1
+            card_num += 1
 
-            if col_num == num_columns:
-                card_htmls.append('</div>\n<div class="card-row">')
-                col_num = 0
+            if card_num % num_columns == 0:
+                if (card_num / num_columns) % num_rows == 0:
+                    card_htmls.append('</div>\n<div class="pagebreak"></div><div class="card-row">')
+                else:
+                    card_htmls.append('</div>\n<div class="card-row">')
+
 
    # pdb.set_trace()
 

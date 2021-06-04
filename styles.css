@@ -3,6 +3,10 @@ body {
   font-size: 1.5vw;
 }
 
+@media print {
+  .pagebreak { page-break-before: always; }
+}
+
 .resource-body {
   position: relative;
   top: 34%;
@@ -13,8 +17,8 @@ body {
 .resource-line {
   position: relative;
   text-align: center;
-  margin-right: 0.7%;
-  top: 61.6%;
+  margin-right: 0.1%;
+  top: 60.8%;
   font-weight: bold;
 }
 
@@ -26,46 +30,48 @@ body {
 }
 
 .resource-body .icon {
-  height: 10.5vw;
+  height: 9.24vw;
   opacity: 85%;
+  margin-left: 1vw;
+  margin-top: 1vw;
 }
 
 span.size_0 {
-  font-size: 3vw;
+  font-size: 2.64vw;
 }
 
 span.size_1 {
-  font-size: 2.3vw;
-}
-
-span.size_2 {
   font-size: 2vw;
 }
 
+span.size_2 {
+  font-size: 1.76vw;
+}
+
 span.size_3 {
-  font-size: 1.9vw;
+  font-size: 1.67vw;
 }
 
 span.size_4 {
-  font-size: 1.7em;
+  font-size: 1.6vw;
 }
 
 span.size_5 {
-  font-size: 1.4vw;
+  font-size: 1.38vw;
 }
 
 span.size_6 {
-  font-size: 1.2vw;
+  font-size: 1.06vw;
 }
 
 span.size_7 {
-  font-size: 1vw;
+  font-size: 0.98vw;
 }
 
 .card-row {
   display: flex;
-  justify-content:space-between
-  width: 100%;
+  justify-content:space-between;
+  width: 88.2%;
 }
 
 .cost {
@@ -74,14 +80,14 @@ span.size_7 {
 }
 
 .cost .icon {
-  padding-bottom: 3%;
+  padding-bottom: 0.3vw;
 }
 
 .card {
-  aspect-ratio: 0.71;
-  width: 33%;
+  aspect-ratio: 0.72;
+  width: 33.333%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 .card-art-inner {
@@ -90,18 +96,18 @@ span.size_7 {
 }
 
 .card-art {
-  width: 82.5%;
-  margin-left: 8.8%;
-  margin-top: 9.8%;
-  height: 43.5%;
+  width: 82.2%;
+  margin-left: 8.9%;
+  margin-top: 10%;
+  height: 43.7%;
 }
 
 .resource {
   background-image: url("resource.png");
 }
 
-.townspeople {
-  background-image: url("townspeople.png");
+.townsperson {
+  background-image: url("townsperson.png");
 }
 
 .research {
@@ -120,6 +126,14 @@ span.size_7 {
   background-image: url("worker.png");
 }
 
+.action {
+  background-image: url("action.png");
+}
+
+.artifact {
+  background-image: url("artifact.png");
+}
+
 .trade_license {
   background-image: url("trade_license.png");
 }
@@ -128,7 +142,7 @@ span.size_7 {
     font-weight: bold;
     position: relative;
     height: 5%;
-    top: 5.7%;
+    top: 5.85%;
     width: 78.5%;
     text-align: center;
     margin-left: 11%;
@@ -139,13 +153,28 @@ span.size_7 {
     align-items: center;
 }
 
+.card-type-line {
+    position: relative;
+    height: 5%;
+    width: 80%;
+    text-align: left;
+    margin-left: 11%;
+    margin-top: 1.1%;
+    line-height: 100%;
+    margin-right: 10%;
+    display: flex;
+    align-items: center;
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
 .card-body {
     position: relative;
     height: 25%;
     width: 80%;
     text-align: center;
     margin-left: 10%;
-    margin-top: 11%;
+    margin-top: 3.5%;
     line-height: 100%;
     margin-right: 10%;
     display: flex;
